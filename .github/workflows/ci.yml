@@ -44,6 +44,12 @@ jobs:
       - name: Run Pint (check)
         run: vendor/bin/pint --test
 
+      - name: Install Node deps
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
       - name: Run tests
         env:
           DB_CONNECTION: sqlite
