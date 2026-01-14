@@ -1,0 +1,15 @@
+created:
+    - database/factories/CourseFactory.php
+    - database/factories/LessonSessionFactory.php
+    - database/factories/BookingFactory.php
+    - database/migrations/2026_01_14_141401_create_courses_table.php
+    - database/migrations/2026_01_14_141402_create_lesson_sessions_table.php
+    - database/migrations/2026_01_14_141403_create_bookings_table.php
+    - app/Models/Course.php
+    - app/Models/LessonSession.php
+    - app/Models/Booking.php
+models:
+    Course: { title: 'string:150', description: 'text nullable', level: 'enum:A1,A2,B1,B2,C1,C2', price: 'decimal:8,2 default:0', is_active: 'boolean default:true', relationships: { hasMany: LessonSession } }
+    Session: { course_id: 'id foreign', teacher_id: 'id foreign:users', starts_at: datetime, duration_minutes: 'unsignedInteger default:60', status: 'enum:scheduled,cancelled,completed default:scheduled', relationships: { belongsTo: 'Course User:teacher' } }
+    Booking: { lesson_session_id: 'id foreign', student_id: 'id foreign:users', status: 'enum:pending,confirmed,cancelled default:pending', note: 'string nullable', relationships: { belongsTo: 'LessonSession User:student' } }
+    LessonSession: { course_id: 'id foreign', teacher_id: 'id foreign:users', starts_at: datetime, duration_minutes: 'unsignedInteger default:60', status: 'enum:scheduled,cancelled,completed default:scheduled', relationships: { belongsTo: 'Course User:teacher' } }

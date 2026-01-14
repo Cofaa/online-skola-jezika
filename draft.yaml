@@ -1,0 +1,31 @@
+models:
+  Course:
+    title: string:150
+    description: text nullable
+    level: enum:A1,A2,B1,B2,C1,C2
+    price: decimal:8,2 default:0
+    is_active: boolean default:true
+    relationships:
+      hasMany:
+        - LessonSession
+
+  LessonSession:
+    course_id: id foreign
+    teacher_id: id foreign:users
+    starts_at: datetime
+    duration_minutes: unsignedInteger default:60
+    status: enum:scheduled,cancelled,completed default:scheduled
+    relationships:
+      belongsTo:
+        - Course
+        - User:teacher
+
+  Booking:
+    lesson_session_id: id foreign
+    student_id: id foreign:users
+    status: enum:pending,confirmed,cancelled default:pending
+    note: string nullable
+    relationships:
+      belongsTo:
+        - LessonSession
+        - User:student
