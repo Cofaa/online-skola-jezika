@@ -24,7 +24,7 @@ class CourseFactory extends Factory
             ]),
             'level' => fake()->randomElement(['A1', 'A2', 'B1', 'B2']),
             'price' => fake()->randomFloat(2, 100, 300),
-            'active' => true,
+            'is_active' => true,
         ];
     }
 }
