@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Admin\LessonSessionController as AdminLessonSessionController;
+use App\Http\Controllers\Admin\TeacherController as AdminTeacherController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\BookingController;
 use App\Http\Controllers\Teacher\LessonSessionController;
@@ -64,9 +67,28 @@ Route::middleware(['auth', 'role:student'])
         Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
     });
 
+Route::resource('teachers', \App\Http\Controllers\Admin\TeacherController::class)
+    ->only(['index', 'create', 'store', 'destroy']);
+
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', fn () => view('dashboards.admin'))->name('dashboard');
+
+        Route::resource('courses', AdminCourseController::class);
+
+        Route::resource('lesson-sessions', AdminLessonSessionController::class)
+            ->only(['index', 'show', 'destroy']);
+
+        Route::resource('teachers', AdminTeacherController::class)
+            ->only(['index', 'create', 'store', 'destroy']);
+    });
+
 /*
 Route::get('/test-admin', function () {
     return 'ADMIN OK';
 })->middleware(['auth', 'role:admin']);
 */
+
 require __DIR__.'/auth.php';
