@@ -38,7 +38,7 @@ class Booking extends Model
 
     public function student(): BelongsTo
     {
-        return $this->belongsTo(LessonSessionUser::class);
+        return $this->belongsTo(User::class, 'student_id');
     }
 
     public function lessonSession(): BelongsTo

@@ -41,7 +41,7 @@ class LessonSession extends Model
 
     public function teacher(): BelongsTo
     {
-        return $this->belongsTo(CourseUser::class);
+        return $this->belongsTo(User::class, 'teacher_id');
     }
 
     public function course(): BelongsTo

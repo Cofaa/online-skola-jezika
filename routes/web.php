@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CourseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Teacher\LessonSessionController;
+use App\Http\Controllers\Student\BookingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,6 +52,16 @@ Route::middleware(['auth', 'role:teacher'])
     ->name('teacher.')
     ->group(function () {
         Route::resource('lesson-sessions', LessonSessionController::class);
+    });
+
+Route::middleware(['auth', 'role:student'])
+    ->prefix('student')
+    ->name('student.')
+    ->group(function () {
+        Route::get('/sessions', [BookingController::class, 'sessions'])->name('sessions.index');
+        Route::post('/sessions/{lesson_session}/book', [BookingController::class, 'store'])->name('sessions.book');
+        Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+        Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
     });
 
 /*
