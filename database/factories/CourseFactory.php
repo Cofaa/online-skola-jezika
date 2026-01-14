@@ -12,11 +12,19 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(4),
-            'description' => fake()->text(),
-            'level' => fake()->randomElement(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']),
-            'price' => fake()->randomFloat(2, 0, 999999.99),
-            'is_active' => fake()->boolean(),
+            'title' => fake()->randomElement([
+                'Srpski jezik – početni kurs',
+                'Srpski jezik – srednji nivo',
+                'Srpski jezik – napredni nivo',
+            ]),
+            'description' => fake()->randomElement([
+                'Osnovni kurs srpskog jezika za početnike.',
+                'Kurs za unapređenje postojećeg znanja srpskog jezika.',
+                'Napredni kurs sa fokusom na konverzaciju i gramatiku.',
+            ]),
+            'level' => fake()->randomElement(['A1', 'A2', 'B1', 'B2']),
+            'price' => fake()->randomFloat(2, 100, 300),
+            'active' => true,
         ];
     }
 }
