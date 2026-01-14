@@ -80,7 +80,7 @@ class DemoSeeder extends Seeder
                     'description' => 'Osnovni kurs srpskog jezika za početnike. Pismo, osnove gramatike i svakodnevni izrazi.',
                     'level' => 'A1',
                     'price' => 120.00,
-                    'active' => true,
+                    'is_active' => true,
                 ]
             ),
             Course::updateOrCreate(
@@ -89,7 +89,7 @@ class DemoSeeder extends Seeder
                     'description' => 'Kurs za polaznike sa osnovnim znanjem. Fokus na komunikaciju i proširenu gramatiku.',
                     'level' => 'B1',
                     'price' => 180.00,
-                    'active' => true,
+                    'is_active' => true,
                 ]
             ),
             Course::updateOrCreate(
@@ -98,7 +98,7 @@ class DemoSeeder extends Seeder
                     'description' => 'Napredni kurs sa fokusom na tečnu konverzaciju, idiome i profesionalnu komunikaciju.',
                     'level' => 'B2',
                     'price' => 250.00,
-                    'active' => true,
+                    'is_active' => true,
                 ]
             ),
         ]);
