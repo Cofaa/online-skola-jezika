@@ -34,7 +34,7 @@
                                 <td class="p-3 text-right">
                                     <form method="POST" action="{{ route('student.sessions.book', $s) }}">
                                         @csrf
-                                        <button class="bg-blue-600 text-white px-3 py-1 rounded">
+                                        <button class="bg-blue-600 text-black px-3 py-1 rounded">
                                             Book
                                         </button>
                                     </form>
