@@ -18,7 +18,7 @@ class SessionFactory extends Factory
             'teacher_id' => User::factory(),
             'starts_at' => fake()->dateTime(),
             'duration_minutes' => fake()->randomNumber(),
-            'status' => fake()->randomElement(["scheduled","cancelled","completed"]),
+            'status' => fake()->randomElement(['scheduled', 'cancelled', 'completed']),
         ];
     }
 }

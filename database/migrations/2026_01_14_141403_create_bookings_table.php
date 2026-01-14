@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('lesson_session_id')->constrained();
             $table->foreignId('student_id')->constrained('users');
-            $table->enum('status', ["pending","confirmed","cancelled"])->default('pending');
+            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->string('note')->nullable();
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150);
             $table->text('description')->nullable();
-            $table->enum('level', ["A1","A2","B1","B2","C1","C2"]);
+            $table->enum('level', ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
             $table->decimal('price', 8, 2)->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

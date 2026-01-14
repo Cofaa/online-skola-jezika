@@ -37,23 +37,23 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
 
     public function teacher(): static
     {
-        return $this->state(fn() => ['role' => 'teacher']);
+        return $this->state(fn () => ['role' => 'teacher']);
     }
 
     public function student(): static
     {
-        return $this->state(fn() => ['role' => 'student']);
+        return $this->state(fn () => ['role' => 'student']);
     }
 
     public function admin(): static
     {
-        return $this->state(fn() => ['role' => 'admin']);
+        return $this->state(fn () => ['role' => 'admin']);
     }
 }

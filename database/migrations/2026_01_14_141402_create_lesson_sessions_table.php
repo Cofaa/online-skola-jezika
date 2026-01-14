@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('teacher_id')->constrained('users');
             $table->dateTime('starts_at');
             $table->unsignedInteger('duration_minutes')->default(60);
-            $table->enum('status', ["scheduled","cancelled","completed"])->default('scheduled');
+            $table->enum('status', ['scheduled', 'cancelled', 'completed'])->default('scheduled');
             $table->timestamps();
         });
 

@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Student\BookingController;
+use App\Http\Controllers\Teacher\LessonSessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Teacher\LessonSessionController;
-use App\Http\Controllers\Student\BookingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,4 +69,4 @@ Route::get('/test-admin', function () {
     return 'ADMIN OK';
 })->middleware(['auth', 'role:admin']);
 */
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

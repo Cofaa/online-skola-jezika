@@ -47,7 +47,6 @@ class TeacherLessonSessionPolicyTest extends TestCase
         $resp->assertDontSee(route('teacher.lesson-sessions.show', $s2), false);
     }
 
-
     public function test_teacher_cannot_view_other_teachers_session(): void
     {
         $teacher1 = User::factory()->create(['role' => 'teacher']);

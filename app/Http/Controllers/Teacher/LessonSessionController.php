@@ -29,6 +29,7 @@ class LessonSessionController extends Controller
         Gate::authorize('create', LessonSession::class);
 
         $courses = Course::orderBy('title')->get(['id', 'title', 'level']);
+
         return view('teacher.lesson-sessions.create', compact('courses'));
     }
 

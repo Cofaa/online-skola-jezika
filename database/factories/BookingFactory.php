@@ -16,7 +16,7 @@ class BookingFactory extends Factory
         return [
             'lesson_session_id' => LessonSession::factory(),
             'student_id' => User::factory(),
-            'status' => fake()->randomElement(["pending","confirmed","cancelled"]),
+            'status' => fake()->randomElement(['pending', 'confirmed', 'cancelled']),
             'note' => fake()->word(),
         ];
     }
