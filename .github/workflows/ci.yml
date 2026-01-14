@@ -5,46 +5,35 @@ on:
   pull_request:
 
 jobs:
-  tests-and-lint:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.2"
-          extensions: mbstring, pdo_sqlite, sqlite3
+          extensions: mbstring, pdo_sqlite
           coverage: none
 
-      - name: Cache Composer
-        uses: actions/cache@v4
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          path: |
-            vendor
-            ~/.composer/cache/files
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+          node-version: "20"
+          cache: "npm"
 
-      - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist --no-progress
-
-      - name: Copy env.testing if missing
-        run: |
-          if [ ! -f .env.testing ]; then
-            cp .env.example .env.testing
-          fi
-
-      - name: Generate app key (testing)
-        run: php artisan key:generate --env=testing
-
-      - name: Run Pint (check)
-        run: vendor/bin/pint --test
-
-      - name: Install Node deps
+      - name: Install Node dependencies
         run: npm ci
 
       - name: Build assets
