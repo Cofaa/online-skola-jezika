@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\LessonSessionController as AdminLessonSessionController;
@@ -74,7 +75,7 @@ Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/', fn () => view('dashboards.admin'))->name('dashboard');
+        Route::get('/', fn() => view('dashboards.admin'))->name('dashboard');
 
         Route::resource('courses', AdminCourseController::class);
 
@@ -83,6 +84,10 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::resource('teachers', AdminTeacherController::class)
             ->only(['index', 'create', 'store', 'destroy']);
+
+        Route::get('/bookings', [AdminBookingController::class, 'index'])->name('bookings.index');
+        Route::patch('/bookings/{booking}/confirm', [AdminBookingController::class, 'confirm'])->name('bookings.confirm');
+        Route::patch('/bookings/{booking}/cancel', [AdminBookingController::class, 'cancel'])->name('bookings.cancel');
     });
 
 /*
@@ -91,4 +96,4 @@ Route::get('/test-admin', function () {
 })->middleware(['auth', 'role:admin']);
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <div class="grid md:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <a href="{{ route('admin.courses.index') }}"
                    class="group bg-white border rounded-2xl p-6 shadow-sm hover:shadow transition">
                     <div class="flex items-center justify-between">
@@ -50,6 +50,17 @@
                     </div>
                     <div class="mt-2 text-sm text-gray-600">
                         Dodavanje i brisanje učitelja (role=teacher).
+                    </div>
+                </a>
+
+                <a href="{{ route('admin.bookings.index') }}"
+                   class="group bg-white border rounded-2xl p-6 shadow-sm hover:shadow transition">
+                    <div class="flex items-center justify-between">
+                        <div class="text-lg font-semibold">Bookings</div>
+                        <div class="text-gray-400 group-hover:text-gray-600 transition">→</div>
+                    </div>
+                    <div class="mt-2 text-sm text-gray-600">
+                        Potvrđivanje i upravljanje rezervacijama.
                     </div>
                 </a>
             </div>
